@@ -156,18 +156,18 @@ if __name__=='__main__':
         correct_preds = 0
         total_preds = 0
 
-    for (data, ids1), (labels, ids2) in dataloader:
-        # Train a model
-        data = data.send(models[0].location)
-        data = data.view(data.shape[0], -1)
-        labels = labels.send(models[-1].location)
+        for (data, ids1), (labels, ids2) in dataloader:
+            # Train a model
+            data = data.send(models[0].location)
+            data = data.view(data.shape[0], -1)
+            labels = labels.send(models[-1].location)
 
-        # Call model
-        loss, preds = train(data, labels, splitNN)
+            # Call model
+            loss, preds = train(data, labels, splitNN)
 
-        # Collect statistics
-        running_loss += loss.get()
-        correct_preds += preds.max(1)[1].eq(labels).sum().get().item()
-        total_preds += preds.get().size(0)
+            # Collect statistics
+            running_loss += loss.get()
+            correct_preds += preds.max(1)[1].eq(labels).sum().get().item()
+            total_preds += preds.get().size(0)
 
-    print(f"Epoch {i} - Training loss: {running_loss/len(dataloader):.3f} - Accuracy: {100*correct_preds/total_preds:.3f}")
+        print(f"Epoch {i} - Training loss: {running_loss/len(dataloader):.3f} - Accuracy: {100*correct_preds/total_preds:.3f}")
