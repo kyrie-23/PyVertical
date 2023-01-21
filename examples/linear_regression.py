@@ -151,10 +151,10 @@ def train(x, target, splitNN):
 
 if __name__=='__main__':
     
-for i in range(epochs):
-    running_loss = 0
-    correct_preds = 0
-    total_preds = 0
+    for i in range(epochs):
+        running_loss = 0
+        correct_preds = 0
+        total_preds = 0
 
     for (data, ids1), (labels, ids2) in dataloader:
         # Train a model
