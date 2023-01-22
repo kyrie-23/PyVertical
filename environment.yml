@@ -6,7 +6,7 @@ dependencies:
   - python=3.7.*
   - numpy >=1.16
   - pandas >= 1.0.0
-  - pytorch=1.10.*
+  - pytorch=1.4.0
   - torchvision
   - black  # for code formatting
   - pip >= 19
@@ -14,4 +14,4 @@ dependencies:
       - openmined.psi
       - pytest
       - matplotlib
-      - syft==0.5.*
+      - syft==0.2.9
